@@ -56,7 +56,7 @@ public class ReclamacoesController {
 			@RequestBody @Valid ReclamacoesDto reclamacoesDto){
 		Optional<ReclamacoesModel> reclamacao = reclamacoesRepository.findById(id);
 		if(reclamacao.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme não encontrado para edição!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reclamação não encontrada para edição!");
 		}
 		var reclamacoesModel = reclamacao.get();
 		BeanUtils.copyProperties(reclamacoesDto,  reclamacoesModel);
@@ -67,9 +67,9 @@ public class ReclamacoesController {
 	public ResponseEntity<Object> deletaRecalmacao(@PathVariable(value="id")  Integer id){
 		Optional<ReclamacoesModel> reclamacao = reclamacoesRepository.findById(id);
 		if(reclamacao.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reclamação não encontrado para deletar!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reclamação não encontrada para deletar!");
 		}
 		reclamacoesRepository.delete(reclamacao.get());
-		return ResponseEntity.status(HttpStatus.OK).body("A reclamacao foi deletada!");
+		return ResponseEntity.status(HttpStatus.OK).body("A reclamação foi deletada!");
 	}
 }
